@@ -3,19 +3,23 @@ from data_downloader_weapons import weapon_downloader
 from char import Charapter
 from Equipment import Equipment
 from Quest_downloader import Quest_downloader
+from Monster_downloader import Monster_downloader
+import random
 class Game:
     def __init__(self):
         self.dic={}
-        self.Hero=0
+        self.Hero=Charapter()
 
 
     def load_data(self):
         data=data_downloader('data.txt')
         weapons=weapon_downloader('weapons.txt')
         quests=Quest_downloader('quests.txt')
+        monsters=Monster_downloader('monsters.txt')
         self.arr=weapons.load()
         self.dic=data.load()
         self.quests=quests.load()
+        self.monsters=monsters.load()
 
 
     def save_data(self):
@@ -41,7 +45,7 @@ class Game:
             elif(self.dic[name2]>self.dic[name1]):
                 print(name2,'wins!')
             else:
-                print('Draw!');
+                print('Draw!')
         else:
             print("One of the warriors isn't exist!")
 
@@ -85,7 +89,7 @@ class Game:
 
     def start_quest(self,name):
         Mission=self.quests[name]
-        success=Mission. calculate_perfomance(self.Hero.level)
+        success=Mission.calculate_perfomance(self.Hero.level)
         if(success==False and self.Hero.level!=1):
             print("Defeat!")
             self.Hero.level-=1
@@ -95,3 +99,37 @@ class Game:
             print("Victory!")
             self.Hero.level+=1
             self.ask_trade(self.arr[success])
+
+    def summon_monster(self,name,level):
+        return self.monsters[name].generate_monster(level)
+    def challenge_monster(self,monster):
+        fl=random.choice([True,False])
+        past_HP_M=monster.HP
+        past_HP_H=self.Hero.HP
+        while(True):
+            if(past_HP_M<=0):
+                print("Victory! Monster defeated!")
+                return True
+            elif(past_HP_H<=0):
+                print("Defeat!")
+                return False
+            elif(fl == True):
+                    x=int(int(self.Hero.damage)+random.randint(0,self.Hero.differ))
+                    past_HP_M -= x
+                    print(self.Hero.name,'slash',monster.name,'with',x,'damage!')
+                    print(self.Hero.name+":",past_HP_H)
+                    print(monster.name+':',past_HP_M)
+                    fl=False
+            elif(fl == False):
+                    x=monster.damage
+                    print(monster.name,'hit',self.Hero.name,'with',x,'damage!')
+                    past_HP_H -= x
+                    print(self.Hero.name+":",past_HP_H)
+                    print(monster.name+':',past_HP_M)
+
+                    fl=True
+
+
+
+
+

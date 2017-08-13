@@ -56,7 +56,18 @@ class Controller:
             elif(line.startswith('/quest_list')):
                 for i in self.cycle.quests.keys():
                     print(self.cycle.quests[i].call_info())
+
+            elif(line.startswith('/summon') and len(line.split())==3):
+                x=line.split()
+                print(self.cycle.summon_monster(x[1],int(x[2])))
+            elif(line.startswith('/monsterbook') and len(line.split())==3):
+                x=line.split()
+                print(self.cycle.summon_monster(x[1],int(x[2])).call_info())
+            elif(line.startswith('/challenge') and len(line.split())==3):
+                x=line.split()
+                self.cycle.challenge_monster(self.cycle.summon_monster(x[1],int(x[2])))
         if(fl==1):
             self.cycle.dic[name]=self.cycle.Hero
             print("Saved Succesfuly")
         self.cycle.save_data()
+

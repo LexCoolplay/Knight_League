@@ -10,6 +10,9 @@ class Charapter:
         self.level=int(level)
         self.Magic=self.arr[magic]
         self.name=name
+        self.HP=100+10*self.level+3*self.Armor.call_level_bonus()
+        self.damage=40+3*self.level+3*self.Weapon_2.call_level_bonus()+3*self.Weapon_1.call_level_bonus()
+        self.differ=self.Magic.call_level_bonus()
     def call_level(self):
         return self.level
     def call_power(self):
