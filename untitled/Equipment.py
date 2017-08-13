@@ -16,4 +16,3 @@ class Equipment:
     def call_brief(self):
         x=self.name+' '+self.type+' '+str(self.level_bonus)+' '+str(self.level)
         return x
-    #123
