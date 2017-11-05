@@ -1,8 +1,3 @@
-N = int(input())
-res = [""]
-k = 0
-i = ""
-length = 0
 from functools import reduce
 N = int(input())
 res = [""]
@@ -15,11 +10,11 @@ for _ in range(N):
     i += inp[:inp.rfind('(')]
 for COUNT in range(5,10):
     for j in i.split():
-        if (len(res[k]) + len(j) + COUNT+1 <= 280):
+        if (len(res[k]) + len(j) + COUNT <= 280):
             # print(len(res[k]) + len(j)+4,k)
             length += len(j) + 4
             res[k] += j + " "
-        elif (len(res[k]) + len(j) + COUNT+1 > 280):
+        elif (len(res[k]) + len(j) + COUNT > 280):
             res[k] += "(" + str(k + 1) + "/"
             res.append("")
             k += 1
