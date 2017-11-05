@@ -20,7 +20,7 @@ for j in i.split():
         k += 1
 
 for a in range(len(res)):
-    if (len(res[a]) < 3 and res[a] or len(res[a]) >= 3 and res[a][-3] != '('):
+    if (len(res[a]) < 3 and res[a] or len(res[a]) >= 3 and res[a].rfind('(')==-1 ):
         res[a] += '(' + str(k + 1) + '/'
     if (res[a]):
         res[a] += str(k + 1) + ")"
