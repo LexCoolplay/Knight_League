@@ -7,11 +7,11 @@ for _ in range(N):
     inp = input().strip()
     i += inp[:inp.rfind('(')] + " "
 for j in i.split():
-    if (len(res[k]) + len(j) + len('(' + str(k + 1) + '/'+str(k + 1) + ")") <= 280):
+    if (len(res[k]) + len(j) + len('(' + str(k + 1) + '/'+str(k + 1) + ")")+1 <= 280):
         # print(len(res[k]) + len(j)+4,k)
         length += len(j) + 4
         res[k] += j + " "
-    elif (len(res[k]) + len(j) + len('(' + str(k + 1) + '/'+str(k + 1) + ")") > 280):
+    elif (len(res[k]) + len(j) + len('(' + str(k + 1) + '/'+str(k + 1) + ")")+1 > 280):
         res[k] += "(" + str(k + 1) + "/"
         res.append("")
         k += 1
