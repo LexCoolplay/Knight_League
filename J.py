@@ -4,7 +4,8 @@ k = 0
 i=""
 length=0
 for _ in range(N):
-    i+= input().strip()[:-5]   +" "
+    inp=input().strip()
+    i+= inp[:inp.rfind('(')]+" "
 for j in i.split():
     if (len(res[k]) + len(j)+6 <= 280):
        # print(len(res[k]) + len(j)+4,k)
