@@ -6,11 +6,11 @@ length=0
 for _ in range(N):
     i+= input().strip()[:-5]   +" "
 for j in i.split():
-    if (len(res[k]) + len(j)+4 <= 280):
+    if (len(res[k]) + len(j)+6 <= 280):
        # print(len(res[k]) + len(j)+4,k)
         length+=len(j)+4
         res[k] += j + " "
-    elif(len(res[k])+len(j)+4>280):
+    elif(len(res[k])+len(j)+6>280):
         res[k]+="("+str(k+1)+"/"
         res.append("")
         k+=1
