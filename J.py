@@ -4,10 +4,10 @@ k = 0
 i=""
 length=0
 for _ in range(N):
-    i+= input().strip()[:-5]
+    i+= input().strip()[:-5]   +" "
 for j in i.split():
     if (len(res[k]) + len(j)+4 <= 280):
-        print(len(res[k]) + len(j)+4,k)
+       # print(len(res[k]) + len(j)+4,k)
         length+=len(j)+4
         res[k] += j + " "
     elif(len(res[k])+len(j)+4>280):
@@ -16,11 +16,11 @@ for j in i.split():
         k+=1
 
 for a in range(len(res)):
-    if(res[a] and res[a][-3]!='('):
+    if(len(res[a])<3 and res[a] or len(res[a])>=3 and res[a][-3]!='('):
         res[a] += '('+str(k+1)+'/'
     if(res[a]):
         res[a] += str(k+1) + ")"
-print(k)
+print(k+1)
 print(*res,sep="\n")
 
 
