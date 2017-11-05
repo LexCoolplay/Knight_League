@@ -1,4 +1,3 @@
-import textwrap
 N = int(input())
 res = [""]
 k = 0
@@ -7,21 +6,22 @@ length=0
 for _ in range(N):
     inp=input().strip()
     i+= inp[:inp.rfind('(')]+" "
-i=textwrap.wrap(i,280)
-
-for a in range(len(i)):
-    i[a]+=" ("+str(a+1)+'/'+str(len(i))+")"
-    i[a]=i[a].replace("  "," ")
-print(len(i))
-print(*i,sep="\n")
-
-#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(1/9)
-#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(1/9)
-#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(1/9)
-#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(1/9)
-#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(1/9)
-#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(1/9)
-#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(1/9)
-#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(1/9)
-#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(1/9)
-#
+for j in i.split():
+    if (len(res[k]) + len(j)+6 <= 280):
+       # print(len(res[k]) + len(j)+4,k)
+        length+=len(j)+4
+        res[k] += j + " "
+    elif(len(res[k])+len(j)+6>280):
+        res[k]+="("+str(k+1)+"/"
+        res.append("")
+        k+=1
+ 
+for a in range(len(res)):
+    if(len(res[a])<3 and res[a] or len(res[a])>=3 and res[a][-3]!='('):
+        res[a] += '('+str(k+1)+'/'
+    if(res[a]):
+        res[a] += str(k+1) + ")"
+if(N<=0):
+    k-=1
+print(k+1)
+print(*res,sep="\n")
