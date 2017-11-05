@@ -21,8 +21,11 @@ for a in range(len(res)):
         res[a] += '('+str(k+1)+'/'
     if(res[a]):
         res[a] += str(k+1) + ")"
+if(N==0):
+    k-=1
 print(k+1)
 print(*res,sep="\n")
+
 
 
 #aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(1/9)
